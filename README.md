@@ -1,2 +1,2 @@
 # hyprland-config
-my hyprland dotfiles
+my personal hyprland dotfiles (ubuntu)
