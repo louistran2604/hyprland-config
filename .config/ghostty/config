@@ -1,0 +1,33 @@
+# === Font ===
+font-family = Roboto Mono for Powerline
+font-size = 14
+
+# === Window ===
+window-decoration = none
+window-height = 32
+window-width = 110
+window-save-state = always
+window-theme = dark
+unfocused-split-opacity = 0.5
+
+# === GTK ===
+gtk-titlebar-style = tabs
+gtk-titlebar-hide-when-maximized = true
+
+# === Behaviour ===
+mouse-hide-while-typing = true
+quick-terminal-position = center
+selection-background = #2d3f76
+selection-foreground = #c8d3f5
+shell-integration = detect
+shell-integration-features = cursor,sudo
+term = xterm-256color
+title = GhosTTY
+wait-after-command = false
+
+# === Keybinds ===
+keybind = ctrl+shift+e=toggle_tab_overview
+
+# === KooL theme imports (optional, loads wallust colors if present) ===
+config-file = ?~/.config/ghostty/theme.conf
+config-file = ?~/.config/ghostty/wallust.conf
