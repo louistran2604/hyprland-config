@@ -1,0 +1,91 @@
+* {
+    background-image: none;
+    font-size: 16px;
+}
+
+window {
+    background-color: rgba(20,20,30,0.4);
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+button {
+    color: white;
+    background-color: rgba(20, 20, 30, 0.6);
+    border: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 35px 60px;
+
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 50%;
+    border-radius: 20px;
+    color: white;
+}
+
+button:focus {
+    background-color: rgba(168, 139, 250, 0.0);
+    background-size: 40%;
+}
+
+#lock:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    background-size: 50%;
+    background-image: url("/home/louistran/.config/wlogout/icons/lock.png");
+    color: white;
+}
+
+/* TEXTO */
+button label {
+    font-size: 13px;
+    opacity: 0.6;
+    color: white;
+    transition: opacity 0.2s ease;
+}
+
+/* OCULTAR TEXTO */
+button:hover label {
+    opacity: 0;
+}
+
+button:focus label {
+    opacity: 0.6;
+}
+
+/* ICONOS */
+#lock {
+    background-image: url("/home/louistran/.config/wlogout/icons/lock.png");
+    background-color: rgba(20, 20, 30, 0.6);
+}
+
+#logout {
+    background-image: url("/home/louistran/.config/wlogout/icons/logout.png");
+}
+
+#hibernate {
+    background-image: url("/home/louistran/.config/wlogout/icons/hibernate.png");
+}
+
+#shutdown {
+    background-image: url("/home/louistran/.config/wlogout/icons/shutdown.png");
+    background-color: rgba(255, 80, 80, 0.3);
+}
+
+#reboot {
+    background-image: url("/home/louistran/.config/wlogout/icons/reboot.png");
+}
+
+#suspend {
+    background-image: url("/home/louistran/.config/wlogout/icons/suspend.png");
+}
