@@ -89,3 +89,7 @@ button:focus label {
 #suspend {
     background-image: url("/home/louistran/.config/wlogout/icons/suspend.png");
 }
+
+#lock:hover label {
+    opacity: 0;
+}
