@@ -1,11 +1,11 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
-# Hypridle
-# Original config submitted by https://github.com/SherLock707
-
+# Hypridle 
+# Original config submitted by https://github.com/SherLock707                                                       
+                                                      
 $iDIR="$HOME/.config/swaync/images/ja.png"
 
 general {
-    lock_cmd = pidof hyprlock || hyprlock # runs hyprlock if it is not already running (this is always run when "loginctl lock-session" is called)
+    lock_cmd = pidof hyprlock || hyprlock # runs hyprlock if it is not already running (this is always run when "loginctl lock-session" is called) 
     # unlock_cmd = killall hyprlock # kills hyprlock when unlocking (this is always run when "loginctl unlock-session" is called)
     before_sleep_cmd = loginctl lock-session    # ensures that the session is locked before going to sleep
     after_sleep_cmd = hyprctl dispatch dpms on # turn of screen after sleep (not strictly necessary, but just in case)
@@ -20,16 +20,11 @@ general {
 #     on-resume = pidof hyprlock && hyprctl dispatch dpms on    # command to run when activity is detected after timeout has fired.
 # }
 
-# Warn - idle detection
-# NOTE: Removed notify-send from on-timeout and on-resume to fix duplicate notifications.
-# SwayNC has its own idle detection that handles "you are idle" / "welcome back" messages.
-# Keeping both caused duplicate notifications. If you want hypridle to handle notifications
-# instead of SwayNC, uncomment the notify-send lines and add notification-visibility rules
-# in swaync's config.json to suppress swaync's idle messages.
+# Warn
 listener {
     timeout = 540                     # 9 min
-    on-timeout = echo "Idle detected" # replaced: notify-send -i $iDIR " You are idle!"
-    on-resume = echo "Resumed from idle"  # replaced: notify-send -i $iDIR " Oh! you're Back" " Hello !!!"
+    on-timeout = notify-send -i $iDIR " You are idle!" # command to run when timeout has passed
+    on-resume = notify-send -i $iDIR " Oh! you're Back" " Hello !!!"  # command to run when activity is detected after timeout has fired.
 }
 
 # Screenlock
@@ -39,7 +34,7 @@ listener {
     #on-resume = notify-send -i $iDIR " System Unlocked!"  # command to run when activity is detected after timeout has fired.
 }
 
-# Turn off screen
+# Turn off screen 
 # (disabled by default)
 # listener {
 #     timeout = 630                            # 10.5 min

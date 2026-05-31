@@ -28,18 +28,6 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-
-  "notification-visibility": {
-    "volume-change": {
-      "state": "transient",
-      "app-name": "Volume"
-    },
-    "idle-detect": {
-      "state": "transient",
-      "summary": "(You are idle|Oh! you're Back)"
-    }
-  },
-
   "widgets": [
       "dnd",
       "buttons-grid",

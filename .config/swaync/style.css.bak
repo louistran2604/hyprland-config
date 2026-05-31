@@ -16,7 +16,7 @@ window {
   background: transparent;
 }
 
-/* Keep your custom color and shape, but explicitly stop the theme from adding borders/shadows */
+/* Keep your custom color and shape, but explicitly stop the theme from adding borders */
 .notification-row .notification {
   background: alpha(@surface, 0.85);
   border-radius: 12px;
@@ -29,10 +29,5 @@ window {
 .notification .image {
   -gtk-icon-source: -gtk-icontheme("audio-player");
 }
-
-/* NOTE: GTK3 CSS does not support max-height or -gtk-line-clamp.
-   Long notification bodies (Discord, Chrome ads) cannot be truncated via CSS in swaync 0.9.0.
-   As a workaround, notification-visibility rules in config.json set these to "transient"
-   so they at least auto-dismiss and don't linger in the notification center. */
 
 /* No progressbar or close-button CSS here, so it uses the default blue bar and button position! */
