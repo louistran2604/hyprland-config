@@ -5,24 +5,29 @@
   font-size: 10pt;
 }
 
+/* Make the window transparent and remove GTK theme borders/shadows */
+window {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.notification-row {
+  background: transparent;
+}
+
+/* Keep your custom color and shape, but explicitly stop the theme from adding borders */
 .notification-row .notification {
   background: alpha(@surface, 0.85);
   border-radius: 12px;
   padding: 12px;
-  margin: 8px;
-}
-
-progressbar trough {
-  background: #1e1e1e;
-  min-height: 6px;
-  border-radius: 4px;
-}
-progressbar progress {
-  background: #ffffff;
-  min-height: 6px;
-  border-radius: 4px;
+  margin: 8px; /* Keeps the default spacing so the close button stays in its normal position */
+  border: none;
+  box-shadow: none;
 }
 
 .notification .image {
   -gtk-icon-source: -gtk-icontheme("audio-player");
 }
+
+/* No progressbar or close-button CSS here, so it uses the default blue bar and button position! */
