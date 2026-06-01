@@ -6,6 +6,7 @@
   "control-center-layer": "top",
   "layer-shell": true,
   "cssPriority": "user",
+  "ignore-gtk-theme": true,
   "control-center-margin-top": 5,
   "control-center-margin-bottom": 0,
   "control-center-margin-right": 0,
@@ -14,7 +15,7 @@
   "notification-inline-replies": false,
   "notification-icon-size": 24,
   "notification-body-image-height": 100,
-  "notification-body-image-width": 100,
+  "notification-body-image-width": 200,
   "notification-window-width": 300,
   "timeout": 6,
   "timeout-low": 3,
@@ -33,6 +34,14 @@
     "volume-change": {
       "state": "transient",
       "app-name": "Volume"
+    },
+    "mic-change": {
+      "state": "transient",
+      "summary": "Mic Level:"
+    },
+    "volume-muted": {
+      "state": "transient",
+      "summary": "Volume:"
     },
     "idle-detect": {
       "state": "transient",
