@@ -215,18 +215,18 @@ main() {
     # Map choices to corresponding files
     case "$choice" in
     	"Edit User Defaults") file="$UserConfigs/01-UserDefaults.conf" ;;
-        "Edit User ENV variables") file="$UserConfigs/ENVariables.conf" ;;
-        "Edit User Keybinds") file="$UserConfigs/UserKeybinds.conf" ;;
-        "Edit User Startup Apps (overlay)") file="$UserConfigs/Startup_Apps.conf" ;;
-        "Edit User Window Rules (overlay)") file="$UserConfigs/WindowRules.conf" ;;
-        "Edit User Settings") file="$configs/SystemSettings.conf"; show_info "Editing default settings. Copy to UserConfigs/UserSettings.conf to override." ;;
-        "Edit User Decorations") file="$UserConfigs/UserDecorations.conf" ;;
-        "Edit User Animations") file="$UserConfigs/UserAnimations.conf" ;;
-        "Edit User Laptop Settings") file="$UserConfigs/Laptops.conf" ;;
-        "Edit System Default Keybinds") file="$configs/Keybinds.conf" ;;
-        "Edit System Default Startup Apps") file="$configs/Startup_Apps.conf" ;;
-        "Edit System Default Window Rules") file="$configs/WindowRules.conf" ;;
-        "Edit System Default Settings") file="$configs/SystemSettings.conf" ;;
+        "Edit User ENV variables") file="$HOME/.config/hypr/lua/env.lua" ;;
+        "Edit User Keybinds") file="$HOME/.config/hypr/lua/keybinds.lua" ;;
+        "Edit User Startup Apps (overlay)") file="$HOME/.config/hypr/lua/startup.lua" ;;
+        "Edit User Window Rules (overlay)") file="$HOME/.config/hypr/lua/window_rules.lua" ;;
+        "Edit User Settings") file="$HOME/.config/hypr/lua/settings.lua" ;;
+        "Edit User Decorations") file="$HOME/.config/hypr/lua/decorations.lua" ;;
+        "Edit User Animations") file="$HOME/.config/hypr/lua/user_animations.lua" ;;
+        "Edit User Laptop Settings") file="$HOME/.config/hypr/lua/keybinds.lua" ;;
+        "Edit System Default Keybinds") file="$HOME/.config/hypr/lua/keybinds.lua" ;;
+        "Edit System Default Startup Apps") file="$HOME/.config/hypr/lua/startup.lua" ;;
+        "Edit System Default Window Rules") file="$HOME/.config/hypr/lua/window_rules.lua" ;;
+        "Edit System Default Settings") file="$HOME/.config/hypr/lua/settings.lua" ;;
         "Set SDDM Wallpaper") $scriptsDir/sddm_wallpaper.sh --normal ;;
         "Choose Kitty Terminal Theme") $scriptsDir/Kitty_themes.sh ;;
         "Configure Monitors (nwg-displays)") 

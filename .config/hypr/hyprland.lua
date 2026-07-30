@@ -1,0 +1,10 @@
+-- Hyprland Lua configuration. Legacy .conf files remain rollback-only.
+require("lua.env")
+require("lua.startup")
+require("lua.settings")
+require("lua.decorations")
+require("lua.user_animations")
+require("lua.keybinds")
+require("lua.window_rules")
+require("lua.monitors")
+require("lua.workspaces")
