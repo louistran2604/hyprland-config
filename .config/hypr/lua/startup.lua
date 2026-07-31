@@ -15,7 +15,7 @@ local commands = {
     "fcitx5 -d",
     "nm-tray",
     "swaync",
-    "sleep 2 && waybar",
+    "sleep 2 && /home/louistran/.local/bin/waybar",
     "qs -c overview",
     "/home/louistran/.config/hypr/scripts/Hyprsunset.sh init",
     "wl-paste --type text --watch cliphist store",
