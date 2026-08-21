@@ -41,7 +41,7 @@ done
 
 #Restart waybar
 sleep 0.1
-waybar &
+/home/louistran/.local/bin/waybar &
 
 # relaunch swaync
 sleep 0.3
