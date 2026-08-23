@@ -1,0 +1,36 @@
+# peaclock — digital (wallust)
+block 2 1
+padding 2 1
+margin 2 1
+ratio 2 1
+date-padding 1
+fill ''
+locale ''
+timezone ''
+date '%a %b %d %p'
+mode clock
+view digital
+toggle padding
+stopwatch start
+timer 10m:0s
+timer-exec 'notify-send -a peaclock "timer complete"'
+rate-input 50
+rate-refresh 250
+rate-status 5000
+set hour-24 off
+set seconds on
+set date on
+set auto-size on
+set auto-ratio on
+style active-fg clear
+style inactive-fg clear
+style colon-fg {{color5}}
+style active-bg {{color5}}
+style inactive-bg {{background}}
+style colon-bg clear
+style date {{color6}}
+style background {{background}}
+style text {{foreground}}
+style prompt clear
+style success {{color2}}
+style error {{color1}}

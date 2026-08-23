@@ -10,3 +10,10 @@
 @define-color button-active {{color2}};
 @define-color border {{color9}};
 @define-color urgent {{color15}};
+
+/* translucent surfaces (glass look) */
+@define-color noti-bg rgba({{background | rgb}},0.45);
+@define-color cc-bg rgba({{background | rgb}},0.65);
+
+/* accent for sliders / progress / switches */
+@define-color accent {{color6}};
