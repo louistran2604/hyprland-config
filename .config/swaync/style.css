@@ -30,6 +30,10 @@ blankwindow {
   background: transparent;
 }
 
+.floating-notifications .notification-row {
+  margin-bottom: 6px;
+}
+
 /* ── Notification rows ── */
 .notification-row {
   background: none;
