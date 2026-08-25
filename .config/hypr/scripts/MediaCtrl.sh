@@ -2,7 +2,7 @@
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  ##
 # Playerctl
 
-music_icon="audio-x-generic"
+music_icon="multimedia-player"
 
 # Find the MPRIS player that is currently Playing.
 # This is needed because bare "playerctl" targets the first player it finds
