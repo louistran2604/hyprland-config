@@ -1,6 +1,5 @@
 local commands = {
     "/home/louistran/.config/hypr/initial-boot.sh",
-    "swaync --skip-system-css -s ~/.config/swaync/style.css",
     "nm-applet",
     "blueman-applet",
     "hypridle",
@@ -14,7 +13,6 @@ local commands = {
     "nm-applet --indicator",
     "fcitx5 -d",
     "nm-tray",
-    "swaync",
     "sleep 2 && /home/louistran/.local/bin/waybar",
     "qs -c overview",
     "/home/louistran/.config/hypr/scripts/Hyprsunset.sh init",
