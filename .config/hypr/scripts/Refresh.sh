@@ -45,7 +45,7 @@ sleep 0.1
 
 # relaunch swaync
 sleep 0.3
-swaync >/dev/null 2>&1 &
+bash "$HOME/.config/swaync/scripts/restart_swaync.sh" >/dev/null 2>&1 &
 # reload swaync
 swaync-client --reload-config
 
