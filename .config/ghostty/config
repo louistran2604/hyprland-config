@@ -11,6 +11,7 @@ window-theme = dark
 unfocused-split-opacity = 0.5
 
 # === GTK ===
+gtk-single-instance = true
 gtk-titlebar-style = tabs
 gtk-titlebar-hide-when-maximized = true
 
@@ -24,6 +25,7 @@ shell-integration-features = cursor,sudo
 term = xterm-256color
 title = GhosTTY
 wait-after-command = false
+quit-after-last-window-closed = false
 
 # === Keybinds ===
 keybind = ctrl+shift+e=toggle_tab_overview
