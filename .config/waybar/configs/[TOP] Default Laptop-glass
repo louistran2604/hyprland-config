@@ -2,6 +2,13 @@
 
 // ### DEFAULT Laptop  - Top ### //
 {
+"custom/peripheral-batteries": {
+  "exec": "/usr/bin/python3 $HOME/.config/waybar/scripts/batteries.py",
+  "return-type": "json",
+  "restart-interval": 5,
+  "on-click": "blueman-manager",
+  "tooltip": true
+},
 "include": [
   "$HOME/.config/waybar/Modules",
   "$HOME/.config/waybar/ModulesWorkspaces",
@@ -44,6 +51,7 @@
 	"tray",
 	"group/laptop",
 	"group/mobo_drawer",
+	"custom/peripheral-batteries",
 	"group/audio",
 	"custom/nightlight",
 	"group/status",

@@ -1,0 +1,4 @@
+# Grant the active desktop user access to the R1 receiver's status interface.
+# USB IDs and interface number belong to different parents; match separately.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1d57", ATTRS{idProduct}=="fa60", ENV{.R1_BATTERY_RECEIVER}="1"
+SUBSYSTEM=="hidraw", ENV{.R1_BATTERY_RECEIVER}=="1", KERNELS=="*:1.2", TAG+="uaccess"
