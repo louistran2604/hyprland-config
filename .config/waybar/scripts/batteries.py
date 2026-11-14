@@ -27,9 +27,20 @@ def bluetooth_rows():
         if not device.get('Connected', False):
             continue
         battery = interfaces.get('org.bluez.Battery1', {}).get('Percentage')
+        status = 'Bluetooth' if battery is not None else 'battery unavailable'
+        if battery is None and device.get('Icon') == 'input-gaming':
+            address = str(device.get('Address', '')).lower()
+            try:
+                battery = int((Path('/sys/class/power_supply') /
+                               f'ps-controller-battery-{address}' / 'capacity').read_text())
+            except (OSError, ValueError):
+                continue
+            if not 0 <= battery <= 100:
+                continue
+            status = 'kernel battery'
         rows.append((str(device.get('Alias', 'Bluetooth device')),
                      int(battery) if battery is not None else None,
-                     'Bluetooth' if battery is not None else 'battery unavailable'))
+                     status))
     return sorted(rows)
 
 
@@ -40,7 +51,8 @@ def render(rows):
     for name, percentage, status in rows:
         value = f'{percentage}%' if percentage is not None else '?'
         icon = {'Attack Shark R1': '󰍽',
-                'SOUL ULTRA WIRELESS 2': ''}.get(name)
+                'SOUL ULTRA WIRELESS 2': '',
+                'Wireless Controller': ''}.get(name)
         label = (f'<span foreground="#ffffff">{icon}</span>' if icon
                  else html.escape(name[:12]))
         text.append(f'{label} {value}')
