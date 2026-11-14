@@ -1,6 +1,7 @@
 # === Font ===
 font-family = Roboto Mono for Powerline
 font-size = 14
+font-codepoint-map = U+2718=DejaVu Sans Mono
 
 # === Window ===
 window-decoration = none
@@ -9,6 +10,7 @@ window-width = 110
 window-save-state = always
 window-theme = dark
 unfocused-split-opacity = 0.5
+background-opacity-cells = true
 
 # === GTK ===
 gtk-single-instance = true
