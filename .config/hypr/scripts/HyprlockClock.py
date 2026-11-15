@@ -38,7 +38,7 @@ def render_clock(config, cache, clock_text):
                 "pango-view", "--no-display", "--dpi=96", "--margin=0",
                 "--font=Roboto Mono for Powerline Bold 96",
                 "--background=transparent", "--foreground=white",
-                "--markup", f'--text=<span letter_spacing="-4096">{clock_text}</span>', f"--output={mask}",
+                "--markup", f'--text=<span letter_spacing="-5888">{clock_text}</span>', f"--output={mask}",
             ], check=True, capture_output=True)
             dimensions = subprocess.check_output(["identify", "-format", "%wx%h", str(mask)], text=True)
             try:
