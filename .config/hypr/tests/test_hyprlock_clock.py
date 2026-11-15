@@ -12,7 +12,7 @@ spec.loader.exec_module(clock)
 
 
 class ClockTest(unittest.TestCase):
-    def test_colon_is_visually_centered_and_clock_is_narrower(self):
+    def test_clock_preserves_native_colon_placement(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             config = root / "hyprlock.conf"
@@ -26,17 +26,22 @@ class ClockTest(unittest.TestCase):
                     alpha = subprocess.check_output([
                         "convert", str(image), "-alpha", "extract", "-depth", "8", "gray:-",
                     ])
-                    occupied = [any(alpha[y * width + x] > 127 for y in range(height)) for x in range(width)]
-                    spans = []
-                    for x, visible in enumerate(occupied):
-                        if visible and (x == 0 or not occupied[x - 1]):
-                            start = x
-                        if visible and (x == width - 1 or not occupied[x + 1]):
-                            spans.append((start, x))
-                    colon = min(range(len(spans)), key=lambda i: abs(sum(spans[i]) / 2 - width / 2))
-                    left_gap = spans[colon][0] - spans[colon - 1][1] - 1
-                    right_gap = spans[colon + 1][0] - spans[colon][1] - 1
-                    self.assertLessEqual(abs(left_gap - right_gap), 1, (time, left_gap, right_gap))
+                    reference = root / "native-mask.png"
+                    subprocess.run([
+                        "pango-view", "--no-display", "--dpi=96", "--margin=0",
+                        "--font=Roboto Mono for Powerline Bold 96",
+                        "--background=transparent", "--foreground=white", "--markup",
+                        f'--text=<span letter_spacing="-12032">{time}</span>', f"--output={reference}",
+                    ], check=True)
+                    expected_alpha = subprocess.check_output([
+                        "convert", str(reference), "-channel", "A", "-evaluate", "multiply", "0.92",
+                        "+channel", "-alpha", "extract", "-depth", "8", "gray:-",
+                    ])
+                    self.assertEqual(len(alpha), len(expected_alpha))
+                    self.assertLessEqual(
+                        max(abs(actual - expected) for actual, expected in zip(alpha, expected_alpha)),
+                        1, f"{time}: glyph positions must match the native font",
+                    )
                     self.assertEqual((width, height), (338, 151))
 
     def test_time_wallpaper_transparency_and_fallback(self):
