@@ -12,6 +12,33 @@ spec.loader.exec_module(clock)
 
 
 class ClockTest(unittest.TestCase):
+    def test_colon_is_visually_centered_and_clock_is_narrower(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            config = root / "hyprlock.conf"
+            config.write_text(f"# clock-colors = #96B3C4 #F1ECE8\nbackground {{\n    path = {root}/missing.png\n}}\n")
+            for time in ("21:25", "11:11", "22:22", "12:34", "00:00", "08:08", "23:59"):
+                with self.subTest(time=time):
+                    image = clock.render_clock(config, root / "cache", time)
+                    width, height = map(int, subprocess.check_output([
+                        "identify", "-format", "%w %h", str(image),
+                    ], text=True).split())
+                    alpha = subprocess.check_output([
+                        "convert", str(image), "-alpha", "extract", "-depth", "8", "gray:-",
+                    ])
+                    occupied = [any(alpha[y * width + x] > 127 for y in range(height)) for x in range(width)]
+                    spans = []
+                    for x, visible in enumerate(occupied):
+                        if visible and (x == 0 or not occupied[x - 1]):
+                            start = x
+                        if visible and (x == width - 1 or not occupied[x + 1]):
+                            spans.append((start, x))
+                    colon = min(range(len(spans)), key=lambda i: abs(sum(spans[i]) / 2 - width / 2))
+                    left_gap = spans[colon][0] - spans[colon - 1][1] - 1
+                    right_gap = spans[colon + 1][0] - spans[colon][1] - 1
+                    self.assertLessEqual(abs(left_gap - right_gap), 1, (time, left_gap, right_gap))
+                    self.assertEqual((width, height), (338, 151))
+
     def test_time_wallpaper_transparency_and_fallback(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

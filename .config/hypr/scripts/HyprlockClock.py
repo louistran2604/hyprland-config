@@ -38,9 +38,33 @@ def render_clock(config, cache, clock_text):
                 "pango-view", "--no-display", "--dpi=96", "--margin=0",
                 "--font=Roboto Mono for Powerline Bold 96",
                 "--background=transparent", "--foreground=white",
-                "--markup", f'--text=<span letter_spacing="-11264">{clock_text}</span>', f"--output={mask}",
+                "--markup", f'--text=<span letter_spacing="-12032">{clock_text}</span>', f"--output={mask}",
             ], check=True, capture_output=True)
             dimensions = subprocess.check_output(["identify", "-format", "%wx%h", str(mask)], text=True)
+            width, height = map(int, dimensions.split("x"))
+            alpha = subprocess.check_output(["convert", str(mask), "-alpha", "extract", "-depth", "8", "gray:-"])
+            coverage = [max(alpha[x::width]) for x in range(width)]
+            left = right = width // 2
+            while coverage[left - 1] >= 128:
+                left -= 1
+            while coverage[right + 1] >= 128:
+                right += 1
+            previous = next(x for x in range(left - 1, -1, -1) if coverage[x] >= 128)
+            following = next(x for x in range(right + 1, width) if coverage[x] >= 128)
+            # Center visible ink, since the narrow '1' leaves asymmetric space in its monospace cell.
+            shift = round((previous + following - left - right) / 2)
+            while coverage[left - 1] > 0:
+                left -= 1
+            while coverage[right + 1] > 0:
+                right += 1
+            region = f"{right - left + 1}x{height}+{left}+0"
+            centered = temporary / "centered.png"
+            subprocess.run([
+                "convert", str(mask), "-region", region, "-channel", "A", "-evaluate", "set", "0",
+                "+channel", "+region", "(", str(mask), "-crop", region, "+repage", ")",
+                "-geometry", f"+{left + shift}+0", "-compose", "Over", "-composite", str(centered),
+            ], check=True, capture_output=True)
+            centered.replace(mask)
             try:
                 # shortcut: sample the wallpaper center; use per-monitor crops for spatially exact glass.
                 subprocess.run([
