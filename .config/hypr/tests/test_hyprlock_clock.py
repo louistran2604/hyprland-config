@@ -34,7 +34,7 @@ class ClockTest(unittest.TestCase):
                 "convert", str(image), "-format", "%[pixel:p{0,0}] %[fx:maxima.a] %[fx:minima.a]", "info:",
             ], text=True).split()
             self.assertEqual(float(pixels[-1]), 0)
-            self.assertAlmostEqual(float(pixels[-2]), 0.85, places=2)
+            self.assertAlmostEqual(float(pixels[-2]), 0.92, places=2)
             self.assertTrue(pixels[0].endswith(",0)"), pixels[0])
             rgb_count = int(subprocess.check_output([
                 "convert", str(image), "-alpha", "off", "-format", "%k", "info:",

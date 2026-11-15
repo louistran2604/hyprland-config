@@ -54,7 +54,7 @@ def render_clock(config, cache, clock_text):
                 subprocess.run(["convert", "-size", dimensions, "xc:" + light, str(texture)], check=True, capture_output=True)
             subprocess.run([
                 "convert", str(texture), str(mask), "-alpha", "on", "-compose", "CopyOpacity",
-                "-composite", "-channel", "A", "-evaluate", "multiply", "0.85", "+channel", str(result),
+                "-composite", "-channel", "A", "-evaluate", "multiply", "0.92", "+channel", str(result),
             ], check=True, capture_output=True)
             result.replace(output)
             stamp.write_text(key)
